@@ -1,49 +1,49 @@
-# 🚀 AI-Roadmap-Generate  
+# 🚀 AI-Roadmap-Generate
 
-> **Trợ lý AI giúp bạn tự động sinh Bản đồ tư duy (Roadmap) vô tận cho mọi lĩnh vực.**
+> **An AI-powered assistant that automatically generates interactive learning Roadmaps for any topic.**
 
-![AI Roadmap Demo](https://i.imgur.com/example-banner.png) *(Thêm ảnh Demo của bạn vào đây)*
+![AI Roadmap Demo](https://i.imgur.com/example-banner.png) *(Add your Demo screenshot here)*
 
-AI-Roadmap-Generate là một ứng dụng mã nguồn mở sử dụng Next.js, NestJS và Google Gemini AI. Khác với các nền tảng tính phí, dự án này được thiết kế ưu tiên cho việc **Self-Host (Tự triển khai)** và **BYOK (Bring Your Own Key)**. Dữ liệu và API Key của bạn hoàn toàn nằm trong quyền kiểm soát của bạn.
-
----
-
-## ✨ Điểm nổi bật
-- **⚡ Bring Your Own Key (BYOK)**: Bạn không cần cài đặt code để dùng thử. Mở web, bấm vào nút **Cài đặt (⚙️)** và dán Google Gemini API Key của bạn vào. API Key chỉ lưu trên trình duyệt của bạn.
-- **🐳 Tích hợp sẵn Docker**: Chạy trọn bộ cả Frontend và Backend siêu dễ dàng bằng 1 dòng lệnh duy nhất.
-- **🤖 Contextual Explanation**: AI không chỉ vẽ sơ đồ mà còn giải thích các nhánh kiến thức một cách sâu sắc ở thanh Sidebar.
-- **🎨 Giao diện ChatGPT Style**: Trải nghiệm UI/UX tối giản, chuyên nghiệp và mượt mà nhất.
-- **📸 Xuất file cực nét**: Tải xuống toàn bộ bản đồ học tập dưới dạng ảnh (PNG).
+AI-Roadmap-Generate is an open-source web application built with Next.js, NestJS, and Google Gemini AI. Unlike commercial platforms, it is designed for **self-hosting** and supports **BYOK (Bring Your Own Key)**. Your data and API Keys remain entirely under your control.
 
 ---
 
-## 🛠️ Hướng dẫn Cài đặt & Triển khai
+## ✨ Features
+- **⚡ Bring Your Own Key (BYOK)**: No development setup required. Open the web app, click the **Settings (⚙️)** button, and paste your Google Gemini API Key. The key is only saved locally in your browser.
+- **🐳 Docker Integration**: Run both Frontend and Backend services instantly with a single command.
+- **🤖 Contextual Explanation**: AI doesn't just draw maps; it explains learning nodes in-depth inside the Sidebar panel.
+- **🎨 ChatGPT-Style Interface**: Modern, minimalist, and clean UI/UX design.
+- **📸 Export Feature**: High-quality PNG export for your generated roadmaps.
 
-### 🐳 Cách 1: Chạy bằng Docker (Khuyên dùng)
-Bạn không cần phải cài đặt Node.js, chỉ cần máy tính (hoặc server) có Docker.
+---
+
+## 🛠️ Installation & Setup
+
+### 🐳 Option 1: Run with Docker (Recommended)
+You do not need to install Node.js locally. You only need Docker installed on your machine.
 
 ```bash
 git clone https://github.com/Quocthai23/AI-Roadmap-Generate.git
 cd AI-Roadmap-Generate
 docker-compose up -d
 ```
-Ứng dụng sẽ tự động tải, cài đặt và khởi chạy:
-- Giao diện Web (Frontend) ở: `http://localhost:3001`
-- Máy chủ (Backend) ở: `http://localhost:3000`
+The application will automatically build and start:
+- Frontend (Web UI): `http://localhost:3001`
+- Backend (API Server): `http://localhost:3000`
 
-### 💻 Cách 2: Chạy thủ công cho Lập trình viên
-Nếu bạn muốn sửa code, hãy chạy thủ công bằng Node.js.
+### 💻 Option 2: Manual Development Setup
+Run the services manually using Node.js.
 
-**Khởi chạy Backend (NestJS):**
+**Start the Backend (NestJS):**
 ```bash
 cd backend
 npm install
 npm run start:dev
 ```
-*Lưu ý: Mặc định backend sẽ nhận API Key từ UI, nhưng bạn cũng có thể tạo file `.env` ở thư mục `backend/` và thêm `GEMINI_API_KEY=your_key`.*
+*Note: By default, the backend will receive the API Key dynamically from the UI, but you can also create a `.env` file in the `backend/` directory and add `GEMINI_API_KEY=your_key`.*
 
-**Khởi chạy Frontend (Next.js):**
-Mở Terminal thứ 2:
+**Start the Frontend (Next.js):**
+In a new terminal window:
 ```bash
 cd frontend
 npm install
@@ -52,18 +52,18 @@ npm run dev
 
 ---
 
-## 🚀 Tự động hóa CI/CD lên Docker Hub
-Dự án được tích hợp sẵn luồng Github Actions (`.github/workflows/docker-publish.yml`).
-Để cấu hình Github tự động Build & Push lên Docker Hub của bạn mỗi khi bạn push code:
-1. Vào kho lưu trữ Github của bạn > **Settings** > **Secrets and variables** > **Actions**.
-2. Thêm 2 biến môi trường:
-   - `DOCKERHUB_USERNAME`: Tên tài khoản Docker Hub.
-   - `DOCKERHUB_TOKEN`: Access Token (hoặc Password) Docker Hub của bạn.
+## 🚀 Automate CI/CD to Docker Hub
+This project includes a pre-configured GitHub Actions workflow (`.github/workflows/docker-publish.yml`).
+To automate Docker Hub building and pushing on every push to the `main` branch:
+1. Go to your GitHub repository > **Settings** > **Secrets and variables** > **Actions**.
+2. Add the following secrets:
+   - `DOCKERHUB_USERNAME`: Your Docker Hub username.
+   - `DOCKERHUB_TOKEN`: Your Docker Hub Access Token (make sure it has **Read, Write** permissions).
 
 ---
 
-## 🤝 Đóng góp
-Dự án phân phối miễn phí và rất hoan nghênh các đóng góp (Pull Request, Issues)!
+## 🤝 Contributing
+Contributions (Pull Requests, Issues) are highly welcome!
 
-## 📝 Giấy phép
-Dự án thuộc giấy phép MIT.
+## 📝 License
+This project is licensed under the MIT License.

@@ -6,7 +6,7 @@ export class RoadmapService {
   private getAiInstance(providedKey?: string): GoogleGenerativeAI {
     const key = providedKey || process.env.GEMINI_API_KEY;
     if (!key) {
-      throw new Error("Missing Gemini API Key. Vui lòng cung cấp API Key trong phần Settings (Cài đặt).");
+      throw new Error("Missing Gemini API Key. Please provide an API Key in the Settings.");
     }
     return new GoogleGenerativeAI(key);
   }
@@ -17,7 +17,6 @@ export class RoadmapService {
       model: 'gemini-flash-latest',
       generationConfig: {
         responseMimeType: 'application/json',
-        // Ép AI trả về đúng schema này
         responseSchema: {
           type: SchemaType.OBJECT,
           properties: {
@@ -30,7 +29,7 @@ export class RoadmapService {
                 properties: {
                   id: { type: SchemaType.STRING },
                   label: { type: SchemaType.STRING },
-                  hasMore: { type: SchemaType.BOOLEAN } // Cờ báo hiệu có nhánh con để hiển thị nút "..."
+                  hasMore: { type: SchemaType.BOOLEAN }
                 },
                 required: ['id', 'label', 'hasMore'],
               }

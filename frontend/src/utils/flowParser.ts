@@ -6,7 +6,6 @@ export function parseHierarchyToFlow(rootData: any) {
   
   const rootId = crypto.randomUUID();
 
-  // Node gốc
   nodes.push({
     id: rootId,
     data: { label: rootData.label, hasMore: false },
@@ -14,7 +13,6 @@ export function parseHierarchyToFlow(rootData: any) {
     type: 'customNode',
   });
 
-  // Các node cấp 1
   if (rootData.children) {
     rootData.children.forEach((child: any) => {
       const childId = crypto.randomUUID();
