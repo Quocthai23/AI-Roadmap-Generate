@@ -1,66 +1,69 @@
 # 🚀 AI-Roadmap-Generate
 
-AI-Roadmap-Generate là một ứng dụng Web thông minh cho phép người dùng nhập một chủ đề bất kỳ và ngay lập tức tạo ra một **Bản đồ tư duy (Roadmap) vô tận** nhờ sức mạnh của AI (Google Gemini).
-
-Người dùng có thể click vào dấu `+` để đào sâu kiến thức và bấm vào từng ô để xem giải thích chi tiết kèm ví dụ Code.
+> **Trợ lý AI giúp bạn tự động sinh Bản đồ tư duy (Roadmap) vô tận cho mọi lĩnh vực.**
 
 ![AI Roadmap Demo](https://i.imgur.com/example-banner.png) *(Thêm ảnh Demo của bạn vào đây)*
 
----
-
-## ✨ Tính năng nổi bật
-- **⚡ Lazy-Loading thông minh**: Chỉ tải nhánh con khi người dùng yêu cầu, giúp sơ đồ không bao giờ bị rối mắt hay lag giật (tránh Information Overload).
-- **🤖 Contextual Explanation**: AI tự động hiểu ngữ cảnh của nhánh con (ví dụ: `Javascript > Asynchronous > Event loop`) để giải thích siêu chính xác ở một Side Panel cực kỳ đẹp mắt.
-- **🎨 Trải nghiệm Premium**: Giao diện thiết kế theo chuẩn Glassmorphism (Kính mờ) tuyệt đẹp với Tailwind CSS.
-- **🚀 Caching mượt mà**: Đã tích hợp tính năng LocalStorage Cache. Các nhánh từng mở hoặc xem sẽ được lưu lại, giúp tải lại trong vòng **0.1s** mà không tốn phí gọi API lần 2.
-- **📸 Xuất ảnh PNG**: Tính năng Download Roadmap siêu nét bằng 1 click.
+AI-Roadmap-Generate là một ứng dụng mã nguồn mở sử dụng Next.js, NestJS và Google Gemini AI. Khác với các nền tảng tính phí, dự án này được thiết kế để **Self-Host (Tự triển khai)** và **BYOK (Bring Your Own Key)**. Dữ liệu và API Key của bạn hoàn toàn nằm trong quyền kiểm soát của bạn.
 
 ---
 
-## 🛠️ Công nghệ sử dụng
-* **Frontend**: Next.js 15, React Flow, Tailwind CSS, Tailwind Typography, Dagre (Auto Layout).
-* **Backend**: NestJS, @google/generative-ai.
-* **AI Model**: `gemini-flash-latest` (Nhanh & Tối ưu cho JSON Output).
+## ✨ Điểm nổi bật
+- **⚡ Bring Your Own Key (BYOK)**: Bạn không cần cài đặt code để dùng thử. Mở web, bấm vào nút **Cài đặt (⚙️)** và dán Google Gemini API Key của bạn vào. API Key chỉ lưu trên trình duyệt của bạn.
+- **🐳 Tích hợp sẵn Docker**: Chạy trọn bộ cả Frontend và Backend siêu dễ dàng bằng 1 dòng lệnh duy nhất.
+- **🤖 Contextual Explanation**: AI không chỉ vẽ sơ đồ mà còn giải thích các nhánh kiến thức một cách sâu sắc ở thanh Sidebar.
+- **🎨 Giao diện ChatGPT Style**: Trải nghiệm UI/UX tối giản, chuyên nghiệp và mượt mà nhất.
+- **📸 Xuất file cực nét**: Tải xuống toàn bộ bản đồ học tập dưới dạng ảnh (PNG).
 
 ---
 
-## 💻 Hướng dẫn Cài đặt & Chạy dự án (Local)
+## 🛠️ Hướng dẫn Cài đặt & Triển khai
 
-### Bước 1: Clone dự án
+### 🐳 Cách 1: Chạy bằng Docker (Khuyên dùng)
+Bạn không cần phải cài đặt Node.js, chỉ cần máy tính (hoặc server) có Docker.
+
 ```bash
 git clone https://github.com/Quocthai23/AI-Roadmap-Generate.git
 cd AI-Roadmap-Generate
+docker-compose up -d
 ```
+Ứng dụng sẽ tự động tải, cài đặt và khởi chạy:
+- Giao diện Web (Frontend) ở: `http://localhost:3001`
+- Máy chủ (Backend) ở: `http://localhost:3000`
 
-### Bước 2: Thiết lập Backend (NestJS)
+### 💻 Cách 2: Chạy thủ công cho Lập trình viên
+Nếu bạn muốn sửa code, hãy chạy thủ công bằng Node.js.
+
+**Khởi chạy Backend (NestJS):**
 ```bash
 cd backend
 npm install
-```
-*Tạo file `.env` ở thư mục `backend/` và nhập API Key của bạn (Lấy tại Google AI Studio):*
-```env
-GEMINI_API_KEY=your_google_gemini_api_key_here
-```
-*Khởi chạy Backend (Server chạy ở cổng 3000):*
-```bash
 npm run start:dev
 ```
+*Lưu ý: Mặc định backend sẽ nhận API Key từ UI, nhưng bạn cũng có thể tạo file `.env` ở thư mục `backend/` và thêm `GEMINI_API_KEY=your_key`.*
 
-### Bước 3: Thiết lập Frontend (Next.js)
-Mở một Terminal (CMD) mới:
+**Khởi chạy Frontend (Next.js):**
+Mở Terminal thứ 2:
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-### Bước 4: Trải nghiệm!
-Mở trình duyệt truy cập: **`http://localhost:3001`** (hoặc 3000).
+---
+
+## 🚀 Tự động hóa CI/CD lên Docker Hub
+Dự án được tích hợp sẵn luồng Github Actions (`.github/workflows/docker-publish.yml`).
+Để cấu hình Github tự động Build & Push lên Docker Hub của bạn mỗi khi bạn push code:
+1. Vào kho lưu trữ Github của bạn > **Settings** > **Secrets and variables** > **Actions**.
+2. Thêm 2 biến môi trường:
+   - `DOCKERHUB_USERNAME`: Tên tài khoản Docker Hub.
+   - `DOCKERHUB_TOKEN`: Access Token (hoặc Password) Docker Hub của bạn.
 
 ---
 
 ## 🤝 Đóng góp
-Mọi đóng góp (Pull Request, Issues) đều được chào đón! Hãy cùng nhau xây dựng cộng đồng học tập thông minh.
+Dự án phân phối miễn phí và rất hoan nghênh các đóng góp (Pull Request, Issues)!
 
 ## 📝 Giấy phép
-Dự án được phân phối dưới giấy phép MIT.
+Dự án thuộc giấy phép MIT.

@@ -3,14 +3,17 @@ import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
 
 @Injectable()
 export class RoadmapService {
-  private ai: GoogleGenerativeAI;
-
-  constructor() {
-    this.ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+  private getAiInstance(providedKey?: string): GoogleGenerativeAI {
+    const key = providedKey || process.env.GEMINI_API_KEY;
+    if (!key) {
+      throw new Error("Missing Gemini API Key. Vui lòng cung cấp API Key trong phần Settings (Cài đặt).");
+    }
+    return new GoogleGenerativeAI(key);
   }
 
-  async generateCoreRoadmap(topic: string) {
-    const model = this.ai.getGenerativeModel({
+  async generateCoreRoadmap(topic: string, apiKey?: string) {
+    const ai = this.getAiInstance(apiKey);
+    const model = ai.getGenerativeModel({
       model: 'gemini-flash-latest',
       generationConfig: {
         responseMimeType: 'application/json',
@@ -44,8 +47,9 @@ export class RoadmapService {
     return JSON.parse(result.response.text());
   }
 
-  async expandNode(parentTopic: string, nodeLabel: string) {
-    const model = this.ai.getGenerativeModel({
+  async expandNode(parentTopic: string, nodeLabel: string, apiKey?: string) {
+    const ai = this.getAiInstance(apiKey);
+    const model = ai.getGenerativeModel({
       model: 'gemini-flash-latest',
       generationConfig: {
         responseMimeType: 'application/json',
@@ -70,8 +74,9 @@ export class RoadmapService {
     return JSON.parse(result.response.text());
   }
 
-  async explainNode(contextPath: string) {
-    const model = this.ai.getGenerativeModel({
+  async explainNode(contextPath: string, apiKey?: string) {
+    const ai = this.getAiInstance(apiKey);
+    const model = ai.getGenerativeModel({
       model: 'gemini-flash-latest',
     });
 
