@@ -4,7 +4,7 @@
 
 ![AI Roadmap Demo](https://i.imgur.com/example-banner.png) *(Thêm ảnh Demo của bạn vào đây)*
 
-AI-Roadmap-Generate là một ứng dụng mã nguồn mở sử dụng Next.js, NestJS và Google Gemini AI. Khác với các nền tảng tính phí, dự án này được thiết kế để **Self-Host (Tự triển khai)** và **BYOK (Bring Your Own Key)**. Dữ liệu và API Key của bạn hoàn toàn nằm trong quyền kiểm soát của bạn.
+AI-Roadmap-Generate là một ứng dụng mã nguồn mở sử dụng Next.js, NestJS và Google Gemini AI. Khác với các nền tảng tính phí, dự án này được thiết kế ưu tiên cho việc **Self-Host (Tự triển khai)** và **BYOK (Bring Your Own Key)**. Dữ liệu và API Key của bạn hoàn toàn nằm trong quyền kiểm soát của bạn.
 
 ---
 
